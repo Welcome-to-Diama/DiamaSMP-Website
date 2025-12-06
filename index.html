@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Diama SMP Portal</title>
 <style>
-  /* === GLOBAL THEME (MINECRAFT + ZEPHYR GAMING VIBE) === */
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
 
   body {
@@ -49,7 +48,6 @@
     font-size: 1em;
   }
 
-  /* === IP BOX === */
   .ip-box {
     display: inline-block;
     background: rgba(0, 255, 255, 0.15);
@@ -69,7 +67,6 @@
     box-shadow: 0 0 25px #00ffff;
   }
 
-  /* === NAVIGATION === */
   nav {
     display: flex;
     justify-content: center;
@@ -103,7 +100,6 @@
     box-shadow: 0 0 25px #00ffaa;
   }
 
-  /* === SECTIONS (WITH FADE EFFECT) === */
   section {
     display: none;
     opacity: 0;
@@ -125,7 +121,6 @@
     transform: translateY(10px);
   }
 
-  /* === CARDS === */
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -149,14 +144,12 @@
     box-shadow: 0 0 25px #00ffff;
   }
 
-  /* === SHOP === */
   #shop .card {
     background: linear-gradient(180deg, rgba(0,255,200,0.15), rgba(0,0,0,0.3));
   }
   #shop h3 { color: #9fffd8; }
   #shop p { color: #d7ffff; }
 
-  /* === FOOTER (DISCORD BUTTON) === */
   footer {
     margin: 50px 0;
   }
@@ -178,7 +171,6 @@
     transform: scale(1.1);
   }
 
-  /* === FLOATING PARTICLES (ZEPHYR EFFECT) === */
   .particle {
     position: fixed;
     border-radius: 50%;
@@ -197,170 +189,154 @@
 
 <body>
   <header>
-<header>
   <img src="Diama logo.png" alt="Diama SMP Logo" class="logo">
   <h1>Diama SMP</h1>
   <p>20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
   <div class="ip-box" onclick="copyIP()">in01.arialnodes.in:25517</div>
 </header>
 
-    <nav>
-    <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
-    <button onclick="showTab('features', this)">FEATURES</button>
-    <button onclick="showTab('rules', this)">RULES</button>
-    <button onclick="showTab('reviews', this)">REVIEWS</button>
-    <button onclick="showTab('shop', this)">SHOP</button>
-  </nav>
+<nav>
+  <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
+  <button onclick="showTab('features', this)">FEATURES</button>
+  <button onclick="showTab('rules', this)">RULES</button>
+  <button onclick="showTab('reviews', this)">REVIEWS</button>
+  <button onclick="showTab('shop', this)">SHOP</button>
+  <button onclick="showTab('sneakpeek', this)">SNEAK PEEK</button>
+</nav>
 
-  <!-- === ROLES === -->
-  <section id="roles" class="active">
-    <h2>TEAM ROLES</h2>
-    <div class="card-container">
-      <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p> 𝐂𝐚𝐩𝐭𝐚𝐢𝐧 | 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐬𝐭 | 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬</p></div>
-      <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
-      <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
-    </div>
-    <div class="card-container">
-      <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
-      <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
-    </div>
-  </section>
-
-<!-- === FEATURES === -->
-<section id="features">
-  <h2>FEATURES</h2>
+<section id="roles" class="active">
+  <h2>TEAM ROLES</h2>
   <div class="card-container">
-
-    <div class="card">
-      <h3>🌍 24/7 Server</h3>
-      <p>Always available for grind and fun sessions.</p>
-    </div>
-
-    <div class="card">
-      <h3>🛡️ Active Staff</h3>
-      <p>Helpful team ready anytime.</p>
-    </div>
-
-    <div class="card">
-      <h3>⚔️ PvP Adventures</h3>
-      <p>Battle, raid and explore together.</p>
-    </div>
-
-    <div class="card">
-      <h3>🧠 Strategy</h3>
-      <p>Collaborate and build empires.</p>
-    </div>
-
-    <div class="card">
-      <h3>🎁 Events</h3>
-      <p>Weekly competitions and rewards.</p>
-    </div>
-
-    <div class="card">
-      <h3>🌲 Survival Economy</h3>
-      <p>Trade, earn, and grow your in-game wealth!</p>
-    </div>
-
+    <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>𝐂𝐚𝐩𝐭𝐚𝐢𝐧 | 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐬𝐭 | 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬</p></div>
+    <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
+    <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
+  </div>
+  <div class="card-container">
+    <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
+    <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
   </div>
 </section>
 
-  <!-- === RULES (5 items) === -->
-  <section id="rules">
-    <h2>SERVER RULES</h2>
-    <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
-      <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
-      <p>❌ <strong>No hacks or exploits.</strong></p>
-      <p>🏠 <strong>No spawn killing or griefing.</strong></p>
-      <p>⚔️ <strong>Fair PvP only.</strong></p>
-      <p>📛 <strong>Follow staff instructions.</strong></p>
-    </div>
-  </section>
+<section id="features">
+  <h2>FEATURES</h2>
+  <div class="card-container">
+    <div class="card"><h3>🌍 24/7 Server</h3><p>Always available for grind and fun sessions.</p></div>
+    <div class="card"><h3>🛡️ Active Staff</h3><p>Helpful team ready anytime.</p></div>
+    <div class="card"><h3>⚔️ PvP Adventures</h3><p>Battle, raid and explore together.</p></div>
+    <div class="card"><h3>🧠 Strategy</h3><p>Collaborate and build empires.</p></div>
+    <div class="card"><h3>🎁 Events</h3><p>Weekly competitions and rewards.</p></div>
+    <div class="card"><h3>🌲 Survival Economy</h3><p>Trade, earn, and grow your in-game wealth!</p></div>
+  </div>
+</section>
 
-  <!-- === REVIEWS === -->
-  <section id="reviews">
-    <h2>CREW REVIEWS</h2>
-    <div class="card-container">
-      <div class="card"><h3>Bhalutenx</h3><p>Best SMP I never feel bored</p></div>
-      <div class="card"><h3>CookieDevil</h3><p>Friendly staff, active gameplay, and fun events.</p></div>
-      <div class="card"><h3>DiedGV</h3><p>Lively and loyal community — love it here!</p></div>
-    </div>
-  </section>
+<section id="rules">
+  <h2>SERVER RULES</h2>
+  <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
+    <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
+    <p>❌ <strong>No hacks or exploits.</strong></p>
+    <p>🏠 <strong>No spawn killing or griefing.</strong></p>
+    <p>⚔️ <strong>Fair PvP only.</strong></p>
+    <p>📛 <strong>Follow staff instructions.</strong></p>
+  </div>
+</section>
 
-  <!-- === SHOP === -->
-  <section id="shop">
-    <h2>🛒 DIAMA SMP SHOP</h2>
-    <div class="card-container">
-      <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
-      <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
-      <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
-      <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
-      <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
-      <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
-    </div>
-    <p style="margin-top:20px;color:#9fffd8;">🕓 Requirements: Must have patience. No refunds once bought.</p>
-  </section>
+<section id="reviews">
+  <h2>CREW REVIEWS</h2>
+  <div class="card-container">
+    <div class="card"><h3>Bhalutenx</h3><p>Best SMP I never feel bored</p></div>
+    <div class="card"><h3>CookieDevil</h3><p>Friendly staff, active gameplay, and fun events.</p></div>
+    <div class="card"><h3>DiedGV</h3><p>Lively and loyal community — love it here!</p></div>
+  </div>
+</section>
 
-  <footer>
-    <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">Join Our Discord 💬</a>
-  </footer>
+<section id="shop">
+  <h2>🛒 DIAMA SMP SHOP</h2>
+  <div class="card-container">
+    <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
+    <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
+    <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
+    <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
+    <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
+    <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
+  </div>
+  <p style="margin-top:20px;color:#9fffd8;">🕓 Requirements: Must have patience. No refunds once bought.</p>
+</section>
 
-  <!-- === WORKING FADE + TAB SCRIPT === -->
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("play.diamasmp.fun:25569");
-      alert("✅ IP copied to clipboard!");
+<!-- NEW: SNEAK PEEK GALLERY -->
+<section id="sneakpeek">
+  <h2>SNEAK PEEK</h2>
+  <div class="card-container">
+    <div class="card"><img src="smp1.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp2.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp3.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp4.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp5.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp6.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp7.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp8.jpg" style="width:100%;border-radius:10px;"></div>
+    <div class="card"><img src="smp9.jpg" style="width:100%;border-radius:10px;"></div>
+  </div>
+</section>
+
+<footer>
+  <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">Join Our Discord 💬</a>
+</footer>
+
+<script>
+  function copyIP() {
+    navigator.clipboard.writeText("play.diamasmp.fun:25569");
+    alert("✅ IP copied to clipboard!");
+  }
+
+  function showTab(tabId, btn) {
+    const allSections = document.querySelectorAll("section");
+    const allButtons = document.querySelectorAll("nav button");
+
+    allButtons.forEach(b => b.disabled = true);
+
+    const current = document.querySelector("section.active");
+    if (current) {
+      current.classList.remove("active");
+      current.classList.add("fade-out");
     }
 
-    function showTab(tabId, btn) {
-      const allSections = document.querySelectorAll("section");
-      const allButtons = document.querySelectorAll("nav button");
-
-      allButtons.forEach(b => b.disabled = true);
-
-      const current = document.querySelector("section.active");
-      if (current) {
-        current.classList.remove("active");
-        current.classList.add("fade-out");
-      }
-
-      setTimeout(() => {
-        allSections.forEach(sec => {
-          sec.style.display = "none";
-          sec.classList.remove("active", "fade-out");
-        });
-
-        const next = document.getElementById(tabId);
-        next.style.display = "block";
-        next.classList.add("active");
-
-        allButtons.forEach(b => b.classList.remove("active"));
-        if (btn) btn.classList.add("active");
-
-        allButtons.forEach(b => b.disabled = false);
-      }, 300);
-    }
-
-    // Floating particles
-    const count = 25;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement("div");
-      p.classList.add("particle");
-      const size = Math.random() * 8 + 4;
-      p.style.width = `${size}px`;
-      p.style.height = `${size}px`;
-      p.style.left = `${Math.random() * 100}vw`;
-      p.style.animationDuration = `${8 + Math.random() * 8}s`;
-      p.style.animationDelay = `${Math.random() * 5}s`;
-      document.body.appendChild(p);
-    }
-
-    // Ensure initial section visibility (helps on some hosts)
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('section').forEach(s => {
-        if (s.classList.contains('active')) s.style.display = 'block';
-        else s.style.display = 'none';
+    setTimeout(() => {
+      allSections.forEach(sec => {
+        sec.style.display = "none";
+        sec.classList.remove("active", "fade-out");
       });
+
+      const next = document.getElementById(tabId);
+      next.style.display = "block";
+      next.classList.add("active");
+
+      allButtons.forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      allButtons.forEach(b => b.disabled = false);
+    }, 300);
+  }
+
+  const count = 25;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement("div");
+    p.classList.add("particle");
+    const size = Math.random() * 8 + 4;
+    p.style.width = `${size}px`;
+    p.style.height = `${size}px`;
+    p.style.left = `${Math.random() * 100}vw`;
+    p.style.animationDuration = `${8 + Math.random() * 8}s`;
+    p.style.animationDelay = `${Math.random() * 5}s`;
+    document.body.appendChild(p);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('section').forEach(s => {
+      if (s.classList.contains('active')) s.style.display = 'block';
+      else s.style.display = 'none';
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
