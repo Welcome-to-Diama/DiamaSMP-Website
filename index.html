@@ -289,32 +289,21 @@
   }
 
   function showTab(tabId, btn) {
-    const allSections = document.querySelectorAll("section");
-    const allButtons = document.querySelectorAll("nav button");
+  const allSections = document.querySelectorAll('section');
+  const allButtons = document.querySelectorAll('nav button');
 
-    allButtons.forEach(b => b.disabled = true);
+  allSections.forEach(sec => {
+    sec.style.display = 'none';
+    sec.classList.remove('active');
+  });
 
-    const current = document.querySelector("section.active");
-    if (current) {
-      current.classList.remove("active");
-      current.classList.add("fade-out");
-    }
+  const next = document.getElementById(tabId);
+  next.style.display = 'block';
+  next.classList.add('active');
 
-    setTimeout(() => {
-      allSections.forEach(sec => {
-        sec.style.display = "none";
-        sec.classList.remove("active", "fade-out");
-      });
-
-      const next = document.getElementById(tabId);
-      next.style.display = "block";
-      next.classList.add("active");
-
-      allButtons.forEach(b => b.classList.remove("active"));
-      if (btn) btn.classList.add("active");
-
-      allButtons.forEach(b => b.disabled = false);
-    }, 300);
+  allButtons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
   }
 
   const count = 25;
