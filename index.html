@@ -6,18 +6,14 @@
   <title>Diama SMP Portal</title>
 
   <style>
-    /* ====== FONTS ====== */
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
 
-    /* ====== BASE ====== */
     :root{
       --teal: #00e6d6;
-      --aqua: #23c9ff;
-      --mint: #9fffe8;
-      --ink:  #041923;
-      --deep: #061f2a;
-      --glass: rgba(255,255,255,.10);
-      --glass2: rgba(255,255,255,.16);
+      --aqua: #2cc9ff;
+      --mint: #cafff6;
+      --ink:  #051a22;
+      --night:#081f2a;
       --stroke: rgba(0,255,255,.24);
     }
 
@@ -27,61 +23,50 @@
       margin:0;
       min-height:100vh;
       font-family:"Poppins",sans-serif;
-      color:#e8fbff;
+      color:#e9fbff;
       text-align:center;
       overflow-x:hidden;
       position:relative;
 
-      /* lighter "cascade + zephyr" mix: deep ocean -> airy sky */
-      background: radial-gradient(1200px 900px at 15% 10%, rgba(35,201,255,.55), transparent 60%),
-                  radial-gradient(1100px 900px at 90% 15%, rgba(0,230,214,.38), transparent 62%),
-                  linear-gradient(180deg, #081f2a 0%, #082a38 35%, #0b3c51 60%, #e9fbff 100%);
+      /* cascade + zephyr (lighter) background */
+      background:
+        radial-gradient(1200px 900px at 15% 10%, rgba(44,201,255,.55), transparent 62%),
+        radial-gradient(1100px 900px at 90% 15%, rgba(0,230,214,.34), transparent 64%),
+        linear-gradient(180deg, #071e28 0%, #082a38 34%, #0b3c51 62%, #eafcff 100%);
       background-attachment: fixed;
     }
 
-    /* subtle “mist” overlay (zephyr feel) */
     body::before{
       content:"";
       position:fixed;
       inset:-2px;
-      background: radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.12), transparent 65%),
-                  radial-gradient(1400px 900px at 70% 30%, rgba(255,255,255,.10), transparent 68%);
+      background:
+        radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.14), transparent 64%),
+        radial-gradient(1400px 900px at 72% 30%, rgba(255,255,255,.10), transparent 68%);
       pointer-events:none;
       z-index:0;
     }
 
-    h1, h2{
-      font-family:"Press Start 2P", cursive;
-      letter-spacing: 0.2px;
+    h1,h2{
+      font-family:"Press Start 2P",cursive;
+      letter-spacing:.2px;
       color: var(--mint);
-      text-shadow: 0 0 14px rgba(0,230,214,.55), 0 0 34px rgba(35,201,255,.35);
-      margin: 0.6em 0 0.35em;
+      text-shadow: 0 0 14px rgba(0,230,214,.55), 0 0 34px rgba(44,201,255,.35);
+      margin: 0.65em 0 0.35em;
     }
 
-    p{ margin: 0.35em auto; color: rgba(232,251,255,.92); }
+    p{ margin: .35em auto; color: rgba(233,251,255,.92); }
 
-    /* ====== HEADER ====== */
-    header{
-      position:relative;
-      z-index:2;
-      padding: 54px 18px 18px;
-    }
-
+    header{ position:relative; z-index:2; padding: 54px 18px 16px; }
     .logo{
       width: 128px;
-      height: auto;
       border-radius: 18px;
-      box-shadow: 0 0 24px rgba(0,230,214,.22), 0 0 46px rgba(35,201,255,.18);
+      box-shadow: 0 0 24px rgba(0,230,214,.22), 0 0 46px rgba(44,201,255,.18);
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.16);
     }
 
-    .subline{
-      margin-top: 10px;
-      font-weight: 600;
-      letter-spacing: .2px;
-      color: rgba(223,252,255,.92);
-    }
+    .subline{ margin-top: 10px; font-weight: 600; letter-spacing: .2px; }
 
     .ip-box{
       display:inline-block;
@@ -91,14 +76,14 @@
       font-weight: 800;
       letter-spacing: .2px;
       cursor: pointer;
-      background: linear-gradient(135deg, rgba(0,230,214,.22), rgba(35,201,255,.12));
+      background: linear-gradient(135deg, rgba(0,230,214,.22), rgba(44,201,255,.12));
       border: 1px solid rgba(0,255,255,.24);
       box-shadow: 0 0 18px rgba(0,230,214,.14);
       transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
     }
     .ip-box:hover{ transform: scale(1.06); background: rgba(255,255,255,.10); box-shadow: 0 0 24px rgba(0,230,214,.24); }
 
-    /* ====== NAV ====== */
+    /* NAV (in your requested order) */
     nav{
       position:relative;
       z-index:2;
@@ -112,16 +97,16 @@
     }
 
     nav button{
-      border: none;
-      cursor: pointer;
-      font-family: "Press Start 2P", cursive;
-      font-size: 0.78em;
+      border:none;
+      cursor:pointer;
+      font-family:"Press Start 2P", cursive;
+      font-size: .78em;
       letter-spacing: .2px;
       padding: 10px 14px;
       border-radius: 12px;
       color: #061923;
       background: linear-gradient(135deg, #7cf8ff, #2cc9ff);
-      box-shadow: 0 0 14px rgba(35,201,255,.22);
+      box-shadow: 0 0 14px rgba(44,201,255,.22);
       transition: transform .18s ease, filter .18s ease;
       white-space: nowrap;
     }
@@ -131,25 +116,18 @@
       box-shadow: 0 0 24px rgba(0,230,214,.35);
     }
 
-    /* ====== SECTIONS ====== */
-    main{ position:relative; z-index:2; padding: 8px 12px 28px; }
+    main{ position:relative; z-index:2; padding: 8px 12px 28px; max-width: 1080px; margin: 0 auto; }
 
     section{
       display:none;
-      opacity: 0;
+      opacity:0;
       transform: translateY(10px);
       transition: opacity .28s ease, transform .28s ease;
       padding: 12px 10px 6px;
-      max-width: 1040px;
-      margin: 0 auto;
     }
-    section.active{
-      display:block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.active{ display:block; opacity:1; transform: translateY(0); }
 
-    /* ====== CARDS ====== */
+    /* Cards */
     .card-container{
       display:flex;
       flex-wrap:wrap;
@@ -164,11 +142,12 @@
       border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(4,25,35,.18));
       border: 1px solid rgba(0,255,255,.22);
-      box-shadow: 0 0 18px rgba(35,201,255,.16);
+      box-shadow: 0 0 18px rgba(44,201,255,.16);
       backdrop-filter: blur(6px);
       transition: transform .22s ease, box-shadow .22s ease;
       text-align:left;
     }
+
     .card:hover{
       transform: translateY(-4px);
       box-shadow: 0 0 26px rgba(0,230,214,.22);
@@ -176,21 +155,19 @@
 
     .card h3{
       margin: 0 0 6px;
-      font-size: 0.98em;
+      font-size: .98em;
       letter-spacing: .2px;
       color: rgba(246,255,255,.98);
     }
     .card p{ margin: 0; color: rgba(232,251,255,.86); }
 
-    /* ====== SHOP TONE ====== */
-    #shop .card{
-      background: linear-gradient(180deg, rgba(0,230,214,.14), rgba(4,25,35,.24));
-    }
+    /* shop tone */
+    #shop .card{ background: linear-gradient(180deg, rgba(0,230,214,.14), rgba(4,25,35,.24)); }
     #shop h3{ color: #cafff6; }
 
-    /* ====== SNEAK PEEK GALLERY ====== */
+    /* Sneak peek gallery (new section) */
     #sneakpeek .gallery{
-      display: grid;
+      display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-top: 14px;
@@ -204,18 +181,16 @@
       overflow: hidden;
       border: 1px solid rgba(0,255,255,.22);
       background: rgba(255,255,255,.08);
-      box-shadow: 0 0 18px rgba(35,201,255,.14);
+      box-shadow: 0 0 18px rgba(44,201,255,.14);
       aspect-ratio: 16 / 10;
       position: relative;
     }
-
     .peek img{
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      display:block;
     }
-
     .peek .cap{
       position: absolute;
       left: 10px;
@@ -224,33 +199,28 @@
       border-radius: 999px;
       background: rgba(0, 25, 35, .72);
       border: 1px solid rgba(255,255,255,.22);
-      font-size: 0.72em;
+      font-size: .72em;
       letter-spacing: .2px;
       color: rgba(232,251,255,.92);
     }
 
-    /* ====== FOOTER ====== */
-    footer{
-      position:relative;
-      z-index:2;
-      margin: 34px 0 22px;
-    }
+    footer{ position:relative; z-index:2; margin: 34px 0 22px; }
 
     .discord{
       display:inline-block;
       padding: 12px 22px;
       border-radius: 999px;
-      text-decoration: none;
+      text-decoration:none;
       font-weight: 800;
       letter-spacing:.1px;
       background: linear-gradient(135deg, #5865f2, #2e5bff);
-      color: #fff;
+      color:#fff;
       box-shadow: 0 0 24px rgba(88,101,242,.34);
       transition: transform .2s ease;
     }
     .discord:hover{ transform: scale(1.06); }
 
-    /* ====== FLOATING PARTICLES ====== */
+    /* particles (zephyr feel) */
     .particle{
       position: fixed;
       z-index: 0;
@@ -275,6 +245,7 @@
     <div class="ip-box" onclick="copyIP()">in01.arialnodes.in:25517</div>
   </header>
 
+  <!-- 1) TEAM ROLES  2) FEATURES  3) RULES  4) REVIEWS  5) SHOP  6) SNEAK PEEK -->
   <nav>
     <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
     <button onclick="showTab('features', this)">FEATURES</button>
@@ -285,11 +256,11 @@
   </nav>
 
   <main>
-    <!-- ROLES -->
+    <!-- 1) ROLES -->
     <section id="roles" class="active">
       <h2>TEAM ROLES</h2>
       <div class="card-container">
-        <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Captain | Strategist | Fearless</p></div>
+        <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>𝐂𝐚𝐩𝐭𝐚𝐢𝐧 | 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐬𝐭 | 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬</p></div>
         <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
         <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
       </div>
@@ -299,7 +270,7 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- 2) FEATURES -->
     <section id="features">
       <h2>FEATURES</h2>
       <div class="card-container">
@@ -312,7 +283,7 @@
       </div>
     </section>
 
-    <!-- RULES -->
+    <!-- 3) RULES -->
     <section id="rules">
       <h2>SERVER RULES</h2>
       <div style="max-width:800px;margin:0 auto;text-align:left;line-height:1.9;">
@@ -324,7 +295,7 @@
       </div>
     </section>
 
-    <!-- REVIEWS -->
+    <!-- 4) REVIEWS -->
     <section id="reviews">
       <h2>CREW REVIEWS</h2>
       <div class="card-container">
@@ -334,7 +305,7 @@
       </div>
     </section>
 
-    <!-- SHOP -->
+    <!-- 5) SHOP -->
     <section id="shop">
       <h2>🛒 DIAMA SMP SHOP</h2>
       <div class="card-container">
@@ -348,7 +319,7 @@
       <p style="margin-top:20px; color: rgba(202,255,246,.9);">🕓 Requirements: Must have patience. No refunds once bought.</p>
     </section>
 
-    <!-- SNEAK PEEK (THIS IS THE ONE YOU WANT) -->
+    <!-- 6) SNEAK PEEK (NEW SECTION) -->
     <section id="sneakpeek">
       <h2>SNEAK PEEK</h2>
       <div class="gallery">
@@ -370,27 +341,25 @@
   </footer>
 
   <script>
-    function copyIP() {
+    function copyIP(){
       navigator.clipboard.writeText("in01.arialnodes.in:25517");
       alert("✅ IP copied to clipboard!");
     }
 
-    function showTab(tabId, btn) {
-      document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+    function showTab(tabId, btn){
+      document.querySelectorAll("main section").forEach(sec => sec.style.display = "none");
       document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
 
       const next = document.getElementById(tabId);
       if (next) next.style.display = "block";
 
       if (btn) btn.classList.add("active");
-      // quick scroll to keep the content visible on mobile
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Floating particles (light zephyr feel)
     (function spawnParticles(){
       const count = 22;
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < count; i++){
         const p = document.createElement("div");
         p.className = "particle";
         const size = Math.random() * 9 + 4;
