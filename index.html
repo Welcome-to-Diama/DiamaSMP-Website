@@ -1,364 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Diama SMP Portal</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diama SMP Portal</title>
 
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: radial-gradient(circle at top, #0d1b2a, #000814 70%);
-    background-attachment: fixed;
-    overflow-x: hidden;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    min-height: 100vh;
-  }
+  <style>
+    /* ====== FONTS ====== */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600;800&display=swap');
 
-  h1, h2 {
-    font-family: "Press Start 2P", cursive;
-    text-shadow: 0 0 15px #00ffff, 0 0 30px rgba(0, 255, 255, 0.5);
-    color: #00ffff;
-  }
+    /* ====== BASE ====== */
+    :root{
+      --teal: #00e6d6;
+      --aqua: #23c9ff;
+      --mint: #9fffe8;
+      --ink:  #041923;
+      --deep: #061f2a;
+      --glass: rgba(255,255,255,.10);
+      --glass2: rgba(255,255,255,.16);
+      --stroke: rgba(0,255,255,.24);
+    }
 
-  header {
-    padding: 60px 20px 30px;
-    position: relative;
-    z-index: 2;
-  }
+    *{ box-sizing:border-box; }
 
-  header img {
-    width: 130px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-  }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Poppins",sans-serif;
+      color:#e8fbff;
+      text-align:center;
+      overflow-x:hidden;
+      position:relative;
 
-  h1 {
-    font-size: 2em;
-    margin: 15px 0;
-    font-weight: 800;
-  }
+      /* lighter "cascade + zephyr" mix: deep ocean -> airy sky */
+      background: radial-gradient(1200px 900px at 15% 10%, rgba(35,201,255,.55), transparent 60%),
+                  radial-gradient(1100px 900px at 90% 15%, rgba(0,230,214,.38), transparent 62%),
+                  linear-gradient(180deg, #081f2a 0%, #082a38 35%, #0b3c51 60%, #e9fbff 100%);
+      background-attachment: fixed;
+    }
 
-  p {
-    color: #c8f6ff;
-    font-size: 1em;
-  }
+    /* subtle “mist” overlay (zephyr feel) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-2px;
+      background: radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.12), transparent 65%),
+                  radial-gradient(1400px 900px at 70% 30%, rgba(255,255,255,.10), transparent 68%);
+      pointer-events:none;
+      z-index:0;
+    }
 
-  .ip-box {
-    display: inline-block;
-    background: rgba(0, 255, 255, 0.15);
-    padding: 12px 25px;
-    border-radius: 12px;
-    margin-top: 15px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    transition: 0.3s;
-    font-weight: 600;
-    color: #00ffff;
-  }
+    h1, h2{
+      font-family:"Press Start 2P", cursive;
+      letter-spacing: 0.2px;
+      color: var(--mint);
+      text-shadow: 0 0 14px rgba(0,230,214,.55), 0 0 34px rgba(35,201,255,.35);
+      margin: 0.6em 0 0.35em;
+    }
 
-  .ip-box:hover {
-    background: rgba(0, 255, 255, 0.3);
-    transform: scale(1.07);
-    box-shadow: 0 0 25px #00ffff;
-  }
+    p{ margin: 0.35em auto; color: rgba(232,251,255,.92); }
 
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 40px 0;
-    width: 100%;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    /* ====== HEADER ====== */
+    header{
+      position:relative;
+      z-index:2;
+      padding: 54px 18px 18px;
+    }
 
-  nav button {
-    background: linear-gradient(135deg, #00c6ff, #0077ff);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-    box-shadow: 0 0 12px rgba(0, 200, 255, 0.4);
-    font-family: "Press Start 2P", cursive;
-    white-space: nowrap;
-  }
+    .logo{
+      width: 128px;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 0 24px rgba(0,230,214,.22), 0 0 46px rgba(35,201,255,.18);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+    }
 
-  nav button:hover {
-    background: linear-gradient(135deg, #00ffff, #00ff88);
-    transform: scale(1.1);
-    box-shadow: 0 0 25px #00ffff;
-  }
+    .subline{
+      margin-top: 10px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: rgba(223,252,255,.92);
+    }
 
-  nav button.active {
-    background: linear-gradient(135deg, #00ffaa, #00ffff);
-    box-shadow: 0 0 25px #00ffaa;
-  }
+    .ip-box{
+      display:inline-block;
+      margin-top: 14px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(0,230,214,.22), rgba(35,201,255,.12));
+      border: 1px solid rgba(0,255,255,.24);
+      box-shadow: 0 0 18px rgba(0,230,214,.14);
+      transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+    }
+    .ip-box:hover{ transform: scale(1.06); background: rgba(255,255,255,.10); box-shadow: 0 0 24px rgba(0,230,214,.24); }
 
-  section {
-    display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-  }
+    /* ====== NAV ====== */
+    nav{
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap: 12px;
+      padding: 18px 14px 6px;
+      margin: 0 auto;
+      max-width: 980px;
+    }
 
-  section.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-  }
+    nav button{
+      border: none;
+      cursor: pointer;
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.78em;
+      letter-spacing: .2px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #061923;
+      background: linear-gradient(135deg, #7cf8ff, #2cc9ff);
+      box-shadow: 0 0 14px rgba(35,201,255,.22);
+      transition: transform .18s ease, filter .18s ease;
+      white-space: nowrap;
+    }
+    nav button:hover{ transform: scale(1.08); filter: brightness(1.03); }
+    nav button.active{
+      background: linear-gradient(135deg, #a6fff0, #00e6d6);
+      box-shadow: 0 0 24px rgba(0,230,214,.35);
+    }
 
-  .fade-out {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+    /* ====== SECTIONS ====== */
+    main{ position:relative; z-index:2; padding: 8px 12px 28px; }
 
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 20px;
-  }
+    section{
+      display:none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .28s ease, transform .28s ease;
+      padding: 12px 10px 6px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    section.active{
+      display:block;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-    width: 260px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-    transition: 0.3s;
-  }
+    /* ====== CARDS ====== */
+    .card-container{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 18px;
+      margin-top: 16px;
+    }
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px #00ffff;
-  }
+    .card{
+      width: 268px;
+      padding: 18px 16px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(4,25,35,.18));
+      border: 1px solid rgba(0,255,255,.22);
+      box-shadow: 0 0 18px rgba(35,201,255,.16);
+      backdrop-filter: blur(6px);
+      transition: transform .22s ease, box-shadow .22s ease;
+      text-align:left;
+    }
+    .card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 0 26px rgba(0,230,214,.22);
+    }
 
-  #shop .card {
-    background: linear-gradient(180deg, rgba(0,255,200,0.15), rgba(0,0,0,0.3));
-  }
-  #shop h3 { color: #9fffd8; }
-  #shop p { color: #d7ffff; }
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 0.98em;
+      letter-spacing: .2px;
+      color: rgba(246,255,255,.98);
+    }
+    .card p{ margin: 0; color: rgba(232,251,255,.86); }
 
-  footer {
-    margin: 50px 0;
-  }
+    /* ====== SHOP TONE ====== */
+    #shop .card{
+      background: linear-gradient(180deg, rgba(0,230,214,.14), rgba(4,25,35,.24));
+    }
+    #shop h3{ color: #cafff6; }
 
-  .discord {
-    display: inline-block;
-    background: linear-gradient(135deg, #5865f2, #3a45c9);
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-    box-shadow: 0 0 25px #5865f2;
-  }
+    /* ====== SNEAK PEEK GALLERY ====== */
+    #sneakpeek .gallery{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 560px){
+      #sneakpeek .gallery{ grid-template-columns: 1fr; }
+    }
 
-  .discord:hover {
-    background: #4752c4;
-    transform: scale(1.1);
-  }
+    .peek{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,255,255,.22);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 18px rgba(35,201,255,.14);
+      aspect-ratio: 16 / 10;
+      position: relative;
+    }
 
-  .particle {
-    position: fixed;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,255,0.8), transparent);
-    opacity: 0.6;
-    animation: float linear infinite;
-    z-index: 0;
-  }
+    .peek img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-  @keyframes float {
-    from { transform: translateY(100vh) scale(0.5); opacity: 0.6; }
-    to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-  }
-</style>
+    .peek .cap{
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0, 25, 35, .72);
+      border: 1px solid rgba(255,255,255,.22);
+      font-size: 0.72em;
+      letter-spacing: .2px;
+      color: rgba(232,251,255,.92);
+    }
+
+    /* ====== FOOTER ====== */
+    footer{
+      position:relative;
+      z-index:2;
+      margin: 34px 0 22px;
+    }
+
+    .discord{
+      display:inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing:.1px;
+      background: linear-gradient(135deg, #5865f2, #2e5bff);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(88,101,242,.34);
+      transition: transform .2s ease;
+    }
+    .discord:hover{ transform: scale(1.06); }
+
+    /* ====== FLOATING PARTICLES ====== */
+    .particle{
+      position: fixed;
+      z-index: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(178,255,255,.9), transparent 68%);
+      opacity: .65;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+    @keyframes floatUp{
+      from { transform: translateY(105vh) scale(.5); opacity: .55; }
+      to   { transform: translateY(-12vh) scale(1.2); opacity: 0; }
+    }
+  </style>
 </head>
 
 <body>
   <header>
-  <img src="Diama logo.png" alt="Diama SMP Logo" class="logo">
-  <h1>Diama SMP</h1>
-  <p>20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
-  <div class="ip-box" onclick="copyIP()">in01.arialnodes.in:25517</div>
-</header>
+    <img src="Diama logo.png" alt="Diama SMP Logo" class="logo">
+    <h1>Diama SMP</h1>
+    <p class="subline">20+ active players • 24/7 online • Version 1.21.6 • Modern Minecraft Community</p>
+    <div class="ip-box" onclick="copyIP()">in01.arialnodes.in:25517</div>
+  </header>
 
-<nav>
-  <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
-  <button onclick="showTab('features', this)">FEATURES</button>
-  <button onclick="showTab('rules', this)">RULES</button>
-  <button onclick="showTab('reviews', this)">REVIEWS</button>
-  <button onclick="showTab('shop', this)">SHOP</button>
-  <button onclick="showTab('sneakpeek', this)">SNEAK PEEK</button>
-</nav>
+  <nav>
+    <button class="active" onclick="showTab('roles', this)">TEAM ROLES</button>
+    <button onclick="showTab('features', this)">FEATURES</button>
+    <button onclick="showTab('rules', this)">RULES</button>
+    <button onclick="showTab('reviews', this)">REVIEWS</button>
+    <button onclick="showTab('shop', this)">SHOP</button>
+    <button onclick="showTab('sneakpeek', this)">SNEAK PEEK</button>
+  </nav>
 
-<section id="roles" class="active">
-  <h2>TEAM ROLES</h2>
-  <div class="card-container">
-    <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>𝐂𝐚𝐩𝐭𝐚𝐢𝐧 | 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐬𝐭 | 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬</p></div>
-    <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
-    <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
-  </div>
-  <div class="card-container">
-    <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
-    <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
-  </div>
-</section>
+  <main>
+    <!-- ROLES -->
+    <section id="roles" class="active">
+      <h2>TEAM ROLES</h2>
+      <div class="card-container">
+        <div class="card"><h3>⟆ CAPTAIN ⋆ RAFAY ⟆</h3><p>Captain | Strategist | Fearless</p></div>
+        <div class="card"><h3>⟆ GAMER ⋆ AFFAN ⟆</h3><p>Owner — Server foundation & direction</p></div>
+        <div class="card"><h3>Ahmed | Blaze</h3><p>Co-Owner — Creative Leadership</p></div>
+      </div>
+      <div class="card-container">
+        <div class="card"><h3>FireX | Blaze</h3><p>Manager — Events & player support</p></div>
+        <div class="card"><h3>🌊 Water Hashira</h3><p>Admin — Experienced Staff & support</p></div>
+      </div>
+    </section>
 
-<section id="features">
-  <h2>FEATURES</h2>
-  <div class="card-container">
-    <div class="card"><h3>🌍 24/7 Server</h3><p>Always available for grind and fun sessions.</p></div>
-    <div class="card"><h3>🛡️ Active Staff</h3><p>Helpful team ready anytime.</p></div>
-    <div class="card"><h3>⚔️ PvP Adventures</h3><p>Battle, raid and explore together.</p></div>
-    <div class="card"><h3>🧠 Strategy</h3><p>Collaborate and build empires.</p></div>
-    <div class="card"><h3>🎁 Events</h3><p>Weekly competitions and rewards.</p></div>
-    <div class="card"><h3>🌲 Survival Economy</h3><p>Trade, earn, and grow your in-game wealth!</p></div>
-  </div>
-</section>
+    <!-- FEATURES -->
+    <section id="features">
+      <h2>FEATURES</h2>
+      <div class="card-container">
+        <div class="card"><h3>🌍 24/7 Server</h3><p>Always available for grind and fun sessions.</p></div>
+        <div class="card"><h3>🛡️ Active Staff</h3><p>Helpful team ready anytime.</p></div>
+        <div class="card"><h3>⚔️ PvP Adventures</h3><p>Battle, raid and explore together.</p></div>
+        <div class="card"><h3>🧠 Strategy</h3><p>Collaborate and build empires.</p></div>
+        <div class="card"><h3>🎁 Events</h3><p>Weekly competitions and rewards.</p></div>
+        <div class="card"><h3>🌲 Survival Economy</h3><p>Trade, earn, and grow your in-game wealth!</p></div>
+      </div>
+    </section>
 
-<section id="rules">
-  <h2>SERVER RULES</h2>
-  <div style="max-width:800px;margin:auto;text-align:left;line-height:1.8;">
-    <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
-    <p>❌ <strong>No hacks or exploits.</strong></p>
-    <p>🏠 <strong>No spawn killing or griefing.</strong></p>
-    <p>⚔️ <strong>Fair PvP only.</strong></p>
-    <p>📛 <strong>Follow staff instructions.</strong></p>
-  </div>
-</section>
+    <!-- RULES -->
+    <section id="rules">
+      <h2>SERVER RULES</h2>
+      <div style="max-width:800px;margin:0 auto;text-align:left;line-height:1.9;">
+        <p>✅ <strong>Respect everyone</strong> — no hate speech or toxicity.</p>
+        <p>❌ <strong>No hacks or exploits.</strong></p>
+        <p>🏠 <strong>No spawn killing or griefing.</strong></p>
+        <p>⚔️ <strong>Fair PvP only.</strong></p>
+        <p>📛 <strong>Follow staff instructions.</strong></p>
+      </div>
+    </section>
 
-<section id="reviews">
-  <h2>CREW REVIEWS</h2>
-  <div class="card-container">
-    <div class="card"><h3>Bhalutenx</h3><p>Best SMP I never feel bored</p></div>
-    <div class="card"><h3>CookieDevil</h3><p>Friendly staff, active gameplay, and fun events.</p></div>
-    <div class="card"><h3>DiedGV</h3><p>Lively and loyal community — love it here!</p></div>
-  </div>
-</section>
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <h2>CREW REVIEWS</h2>
+      <div class="card-container">
+        <div class="card"><h3>Bhalutenx</h3><p>Best SMP I never feel bored</p></div>
+        <div class="card"><h3>CookieDevil</h3><p>Friendly staff, active gameplay, and fun events.</p></div>
+        <div class="card"><h3>DiedGV</h3><p>Lively and loyal community — love it here!</p></div>
+      </div>
+    </section>
 
-<section id="shop">
-  <h2>🛒 DIAMA SMP SHOP</h2>
-  <div class="card-container">
-    <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
-    <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
-    <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
-    <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
-    <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
-    <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
-  </div>
-  <p style="margin-top:20px;color:#9fffd8;">🕓 Requirements: Must have patience. No refunds once bought.</p>
-</section>
+    <!-- SHOP -->
+    <section id="shop">
+      <h2>🛒 DIAMA SMP SHOP</h2>
+      <div class="card-container">
+        <div class="card"><h3>ELITE</h3><p>550K OwO</p></div>
+        <div class="card"><h3>OMEGA</h3><p>400K OwO</p></div>
+        <div class="card"><h3>IMMORTAL</h3><p>375K OwO</p></div>
+        <div class="card"><h3>BOOSTER KIT</h3><p>350K OwO</p></div>
+        <div class="card"><h3>ULTRA KIT</h3><p>250K OwO</p></div>
+        <div class="card"><h3>VIP KIT</h3><p>100K OwO</p></div>
+      </div>
+      <p style="margin-top:20px; color: rgba(202,255,246,.9);">🕓 Requirements: Must have patience. No refunds once bought.</p>
+    </section>
 
-<!-- NEW: SNEAK PEEK GALLERY -->
-<section id="sneakpeek">
-  <h2>SNEAK PEEK</h2>
-  <div class="card-container">
-    <div class="card"><img src="smp1.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp2.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp3.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp4.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp5.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp6.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp7.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp8.jpg" style="width:100%;border-radius:10px;"></div>
-    <div class="card"><img src="smp9.jpg" style="width:100%;border-radius:10px;"></div>
-  </div>
-</section>
+    <!-- SNEAK PEEK (THIS IS THE ONE YOU WANT) -->
+    <section id="sneakpeek">
+      <h2>SNEAK PEEK</h2>
+      <div class="gallery">
+        <div class="peek"><img src="smp1.jpg" alt="SMP preview 1"><div class="cap">SMP 01</div></div>
+        <div class="peek"><img src="smp2.jpg" alt="SMP preview 2"><div class="cap">SMP 02</div></div>
+        <div class="peek"><img src="smp3.jpg" alt="SMP preview 3"><div class="cap">SMP 03</div></div>
+        <div class="peek"><img src="smp4.jpg" alt="SMP preview 4"><div class="cap">SMP 04</div></div>
+        <div class="peek"><img src="smp5.jpg" alt="SMP preview 5"><div class="cap">SMP 05</div></div>
+        <div class="peek"><img src="smp6.jpg" alt="SMP preview 6"><div class="cap">SMP 06</div></div>
+        <div class="peek"><img src="smp7.jpg" alt="SMP preview 7"><div class="cap">SMP 07</div></div>
+        <div class="peek"><img src="smp8.jpg" alt="SMP preview 8"><div class="cap">SMP 08</div></div>
+        <div class="peek"><img src="smp9.jpg" alt="SMP preview 9"><div class="cap">SMP 09</div></div>
+      </div>
+    </section>
+  </main>
 
-<footer>
-  <a href="https://discord.gg/2UVgQdTjRZ" class="discord" target="_blank">Join Our Discord 💬</a>
-</footer>
+  <footer>
+    <a class="discord" href="https://discord.gg/2UVgQdTjRZ" target="_blank">Join Our Discord 💬</a>
+  </footer>
 
-<script>
-  function copyIP() {
-    navigator.clipboard.writeText("play.diamasmp.fun:25569");
-    alert("✅ IP copied to clipboard!");
-  }
-
-  function showTab(tabId, btn) {
-  const allSections = document.querySelectorAll('section');
-  const allButtons = document.querySelectorAll('nav button');
-
-  allSections.forEach(sec => {
-    sec.style.display = 'none';
-    sec.classList.remove('active');
-  });
-
-  const next = document.getElementById(tabId);
-  next.style.display = 'block';
-  next.classList.add('active');
-
-  allButtons.forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-}
-  }
-
-  const count = 25;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement("div");
-    p.classList.add("particle");
-    const size = Math.random() * 8 + 4;
-    p.style.width = `${size}px`;
-    p.style.height = `${size}px`;
-    p.style.left = `${Math.random() * 100}vw`;
-    p.style.animationDuration = `${8 + Math.random() * 8}s`;
-    p.style.animationDelay = `${Math.random() * 5}s`;
-    document.body.appendChild(p);
-  }
-
-  // FIX: Remove DOMContentLoaded hiding bug
-// Removed old DOMContentLoaded script completely('DOMContentLoaded', () => {
-  document.querySelectorAll('section').forEach(s => {
-    if (s.classList.contains('active')) s.style.display = 'block';
-  });
-});
-  });
-
-  // CLEAN TAB SCRIPT — guaranteed to work
-  function showTab(tabId, btn) {
-    document.querySelectorAll('section').forEach(sec => {
-      sec.style.display = 'none';
-      sec.classList.remove('active');
-    });
-
-    const next = document.getElementById(tabId);
-    if (next) {
-      next.style.display = 'block';
-      next.classList.add('active');
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("in01.arialnodes.in:25517");
+      alert("✅ IP copied to clipboard!");
     }
 
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-  }
+    function showTab(tabId, btn) {
+      document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+      document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
 
-</script>
+      const next = document.getElementById(tabId);
+      if (next) next.style.display = "block";
 
-<section id="sneak-peek" class="tab-content" style="display:block; padding:20px; background:#fff;">
-  <h2>Sneak Peek</h2>
-  <p style="font-size:18px;">Temporary preview section added because original wasn’t showing.</p>
-  <div style="display:flex; flex-wrap:wrap; gap:10px;">
-    <div style="width:150px; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center;">Preview 1</div>
-    <div style="width:150px; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center;">Preview 2</div>
-    <div style="width:150px; height:150px; background:#ddd; display:flex; align-items:center; justify-content:center;">Preview 3</div>
-  </div>
-</section>
+      if (btn) btn.classList.add("active");
+      // quick scroll to keep the content visible on mobile
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Floating particles (light zephyr feel)
+    (function spawnParticles(){
+      const count = 22;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        const size = Math.random() * 9 + 4;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.animationDuration = `${8 + Math.random() * 7}s`;
+        p.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(p);
+      }
+    })();
+  </script>
 </body>
 </html>
